@@ -1,0 +1,13 @@
+services:
+  swagger-editor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: swaggerapi/swagger-editor
+    container_name: swagger-editor
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    volumes:
+      - $SWAGGER_JSON:/src/swagger/swagger.json

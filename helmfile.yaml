@@ -1,0 +1,14 @@
+helmDefaults:
+  createNamespace: true
+  wait: true
+  waitForJobs: true
+  atomic: true
+  cleanupOnFail: true
+---
+releases:
+  - chart: ./swagger-editor
+    name: swagger-editor
+    namespace: swagger-editor
+    version: 0.1.0
+    labels:
+      role: api
