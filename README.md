@@ -180,6 +180,9 @@ Nous pouvons à ce niveau utiliser un Port-Forward , pour accéder à notre imag
 kubectl -n swagger-editor port-forward service/swagger-editor-app --address 0.0.0.0 8081:8080
 ```
 
+Voir http://localhost:8081/
+
+
 ### Utilisation via un WorkFlow
 
 
