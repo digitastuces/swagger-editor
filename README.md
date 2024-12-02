@@ -1,6 +1,6 @@
 # Swagger Editor
 
-Pre-requis:
+- Pre-requis:
 
 
 Technology | Version
