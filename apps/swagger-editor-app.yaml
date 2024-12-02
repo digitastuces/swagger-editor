@@ -6,7 +6,7 @@ metadata:
 spec:
   destination:
     name: 'in-cluster'
-    namespace: 'swagger'
+    namespace: 'swagger-editor'
   source:
     path: 'swagger-editor'
     repoURL: 'https://github.com/digitastuces/swagger-editor.git'
