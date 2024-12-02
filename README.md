@@ -109,8 +109,67 @@ curl -v -X POST \
 	http://localhost:8080/publish
 ```
 
+## Déploiement de la Charte Swagger editor
 
----
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: swagger-editor-app
+  namespace: argocd
+spec:
+  destination:
+    name: 'in-cluster'
+    namespace: 'swagger-editor'
+  source:
+    path: 'swagger-editor'
+    repoURL: 'https://github.com/digitastuces/swagger-editor.git'
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
+  project: 'default'
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=false
+```
+
+
+```sh
+kubectl apply -f apps/swagger-editor-app.yaml
+```
+
+![Swagger App](./resources/img/swagger-app.png)
+
+
+
+```sh
+> kubens swagger-editor
+Active namespace is "swagger-editor".
+```
+
+```sh
+> k get all
+NAME                                      READY   STATUS    RESTARTS   AGE
+pod/swagger-editor-app-58594b78d4-8fcwp   1/1     Running   0          8m39s
+
+NAME                         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
+service/swagger-editor-app   ClusterIP   10.36.149.91   <none>        80/TCP    8m40s
+
+NAME                                 READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/swagger-editor-app   1/1     1            1           8m39s
+
+NAME                                            DESIRED   CURRENT   READY   AGE
+replicaset.apps/swagger-editor-app-58594b78d4   1         1         1       8m39s
+```
+
+
+Nous pouvons à ce niveau utiliser un Port-Forward , pour accéder à notre image dans le navigateur
+
+```sh
+kubectl -n swagger-editor port-forward service/swagger-editor-app --address 0.0.0.0 8081:8080
+```
+
 
 
 
