@@ -50,7 +50,7 @@ ingress:
         - path: /
           pathType: ImplementationSpecific
   tls:
-    - secretName: swagger-editor.digitastuces.com-tls
+    - secretName: digitastuces-tls
       hosts:
         - swagger-editor.digitastuces.com
 resources:
