@@ -1,18 +1,28 @@
 # Swagger Editor
 
+Pre-requis:
+
+
+Technology | Version
+---------- | -------
+Swagger UI | v4.13.1
+Docker     | x
+Helm       | x
 
 ## Structure du projet :
 
 ```sh
 swagger-editor/
-├── swagger
-│   └── swagger.json
 ├── apps
 │   └── swagger-editor-app.yaml
 ├── docker-compose.yml
 ├── Dockerfile
 ├── helmfile.yaml
 ├── README.md
+├── resources
+│   ├── api
+│   │   └── swagger.json
+│   └── examples
 └── swagger-editor
     ├── charts
     ├── Chart.yaml
@@ -28,7 +38,7 @@ swagger-editor/
     │   └── tests
     └── values.yaml
 
-7 directories, 16 files
+10 directories, 17 files
 ```
 
 
@@ -82,7 +92,22 @@ Résultat visible dans :
 
 ![Swagger IHM](./resources/img/swagger-ihm.png)
 
+Pour builder une image manuellement et la publier dans Harbor, il faut utiliser cette commande :
 
+
+### L'API
+
+> Pour plus de détails sur l'API, consultez la [présentation de l'API](#api-reference).
+
+Une nouvelle spécification Swagger peut être publiée en envoyant une requête `POST` avec le JSON Swagger dans le corps au endpoint `/publish` :
+
+
+```sh
+curl -v -X POST \
+	-d @swagger_upload.json \
+	-H "Content-Type: application/json" \
+	http://localhost:8080/publish
+```
 
 
 ---
