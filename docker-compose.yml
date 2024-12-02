@@ -3,11 +3,16 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: swaggerapi/swagger-editor
     container_name: swagger-editor
+    restart: on-failure
+    networks:
+      - cnaf-bridge-network
     ports:
       - "8080:8080"
     env_file:
       - .env
     volumes:
-      - $SWAGGER_JSON:/src/swagger/swagger.json
+      - $API_VOLUME_MOUNT:/src/swagger/swagger.json
+networks:
+  cnaf-bridge-network:
+    driver: bridge

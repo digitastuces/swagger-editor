@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.3",
     "info": {
-      "title": "TEST V2",
+      "title": "CNAF - Swagger Editor v4.13.1",
       "description": "desc",
       "termsOfService": "http://swagger.io/terms/",
       "contact": {

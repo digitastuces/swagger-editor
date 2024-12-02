@@ -5,7 +5,7 @@
 
 ```sh
 swagger-editor/
-├── api
+├── swagger
 │   └── swagger.json
 ├── apps
 │   └── swaggereditor-app.yaml
@@ -32,6 +32,8 @@ swagger-editor/
 ```
 
 
+## Getting started
+
 
 
 [![Docker Build Status](https://img.shields.io/docker/build/metz/swaggerui.svg)](https://hub.docker.com/r/metz/swaggerui/)
@@ -39,7 +41,6 @@ swagger-editor/
 
 `metz/swaggerui` is a Docker image for the [Swagger UI](https://swagger.io/swagger-ui/), that supports publishing [Swagger Specs](https://swagger.io/specification/) via **API** and **volume mount**.
 
-## Getting started
 
 You can pull and run a pre-built Docker image directly from [Dockerhub](https://hub.docker.com/r/metz/swaggerui/):
 
