@@ -8,7 +8,7 @@ swagger-editor/
 ├── swagger
 │   └── swagger.json
 ├── apps
-│   └── swaggereditor-app.yaml
+│   └── swagger-editor-app.yaml
 ├── docker-compose.yml
 ├── Dockerfile
 ├── helmfile.yaml
