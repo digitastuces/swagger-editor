@@ -2,12 +2,13 @@
 
 - Pre-requis:
 
-
-Technology | Version
+Outils     | Version
 ---------- | -------
 Swagger UI | v4.13.1
 Docker     | x
 Helm       | x
+ArgoCD     | x
+Harbor     | x
 
 ## Structure du projet :
 
@@ -40,6 +41,12 @@ swagger-editor/
 
 10 directories, 17 files
 ```
+
+
+## Schéma d'architecture du Projet Swagger editor
+
+
+**(à completer)**
 
 
 
