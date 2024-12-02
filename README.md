@@ -42,10 +42,6 @@ swagger-editor/
 ```
 
 
-## Getting started
-
-
-
 
 ## La Chart Swagger-editor CNAF
 
@@ -74,7 +70,7 @@ COPY . .
 EXPOSE 8080
 ```
 
-Pour effectuer un test en Développement, il suffit de lancer cette commande :
+Pour effectuer un test en `Développement`, il suffit de lancer cette commande :
 
 
 ```sh
@@ -99,17 +95,26 @@ Pour builder une image manuellement et la publier dans Harbor, il faut utiliser 
 
 > Pour plus de détails sur l'API, consultez la [présentation de l'API](#api-reference).
 
-Une nouvelle spécification Swagger peut être publiée en envoyant une requête `POST` avec le JSON Swagger dans le corps au endpoint `/publish` :
+**(à completer)**
+
+###  La Chart Swagger editor
+
+Nous allons pouvoir installer l'application Swagger-editor Dockerisée via une Chart Helm et via ArgoCD.
+
+La Chart `Swagger-editor` basée sur l'image `Dockerfile` buildée précédemment comprend des modèles pour diverses ressources Kubernetes afin de former une application Swagger complète.
+Cela réduit la complexité des microservices et simplifie leur gestion dans Openshift.
+
+Cette chart peut être ensuite compressée et envoyée vers notre référentiel interne Nexus. Cela crée un artefact d’application pour Kubernetes. Nous pourons ainsi récupérer et re-déployer cette chart Helm (artefact) désormais existant à partir du Nexus. Ceci constitue un point fort pour la **réutilisabilité** et le partage.
+
+Nous pourrions aussi conserver un historique des versions de Swagger editor déployées dans un Namespace Openshift. Lorsque quelque chose ne va pas bien, revenir à une version précédente.
+
+L'utilisation de la Chart rend alors le déploiement hautement configurable.
+
 
 
 ```sh
-curl -v -X POST \
-	-d @swagger_upload.json \
-	-H "Content-Type: application/json" \
-	http://localhost:8080/publish
+vim apps/swagger-editor-app.yaml
 ```
-
-## Déploiement de la Charte Swagger editor
 
 ```yaml
 apiVersion: argoproj.io/v1alpha1
@@ -142,7 +147,6 @@ kubectl apply -f apps/swagger-editor-app.yaml
 ![Swagger App](./resources/img/swagger-app.png)
 
 
-
 ```sh
 > kubens swagger-editor
 Active namespace is "swagger-editor".
@@ -163,104 +167,13 @@ NAME                                            DESIRED   CURRENT   READY   AGE
 replicaset.apps/swagger-editor-app-58594b78d4   1         1         1       8m39s
 ```
 
-
 Nous pouvons à ce niveau utiliser un Port-Forward , pour accéder à notre image dans le navigateur
 
 ```sh
 kubectl -n swagger-editor port-forward service/swagger-editor-app --address 0.0.0.0 8081:8080
 ```
 
+### Utilisation via un WorkFlow
 
 
-
-[![Docker Build Status](https://img.shields.io/docker/build/metz/swaggerui.svg)](https://hub.docker.com/r/metz/swaggerui/)
-[![Docker Automated build](https://img.shields.io/docker/automated/metz/swaggerui.svg)](https://hub.docker.com/r/metz/swaggerui/)
-
-`metz/swaggerui` is a Docker image for the [Swagger UI](https://swagger.io/swagger-ui/), that supports publishing [Swagger Specs](https://swagger.io/specification/) via **API** and **volume mount**.
-
-
-You can pull and run a pre-built Docker image directly from [Dockerhub](https://hub.docker.com/r/metz/swaggerui/):
-
-```sh
-docker run --name swaggerui -p 80:8080 metz/swaggerui
-```
-
-This will start the Swagger UI using the default [petstore JSON](http://petstore.swagger.io/v2/swagger.json). Then you can access the Swagger UI directly from a browser:
-
-- **Swagger UI:** [http://localhost:80/](http://localhost/)
-
-### Publish a custom Swagger Spec
-
-In order to supply your own Swagger Spec (`swagger.json`), you will need to either publish it via the **API** or mount it with a **volume**.
-
-Both solutions can be combined, so that the currently published Swagger Spec will be synced with the mounted directory.
-
-#### API
-
-> For more details about the API, see the [API overview](#api-reference).
-
-A new Swagger Spec can be published by sending a `POST` request with the Swagger JSON in the body to the `/publish` endpoint:
-
-```sh
-curl -v -X POST \
-	-d @swagger_upload.json \
-	-H "Content-Type: application/json" \
-	http://localhost:80/publish
-```
-
-#### Volume
-
-In order to publish the Swagger Spec via filesystem, mount the directory containing the `swagger.json` as a volume at `/swaggerui/swagger`:
-
-```sh
-docker run --name swaggerui -p 80:8080 -v /path/to/spec:/swaggerui/swagger metz/swaggerui
-```
-
-##### Persistence
-
-Mounting the volume also preserves the Swagger Spec across container shutdown and startup.
-
-## Developing
-
-### Built With
-
-Technology | Version
----------- | -------
-Swagger UI | 3.2.2
-NodeJS     | 8
-
-> Swagger UI only supports the Swagger / OpenAPI specification `2.0` as of version `3.x`.
-
-### Building
-
-In order to build the container manually, execute the following in the checkout directory:
-
-```sh
-docker build -t metz/swaggerui .
-```
-
-## API Reference
-
-This Docker image provides a simple API that allows to retrieve and update the current Swagger Spec that will be displayed by Swagger UI.
-
-Method | Endpoint   | Description
------- | ---------- | -----------
-`GET`  | `/`        | Swagger UI
-`GET`  | `/spec`    | Current Swagger specification
-`POST` | `/publish` | Publish a new Swagger specification
-
-## Supported tags
-
-> Find all available tags on [Dockerhub](https://hub.docker.com/r/metz/swaggerui/tags/).
-
-Each `metz/swaggerui` version is tagged. We also have 2 tags for the beta and stable track:
-
-- `latest`: latest stable build, this is the latest officially supported release
-- `nightly`: images built from HEAD periodically. Potentially unstable!
-
-For more information about this image and the functionality it provides, please see the [`docker-swaggerui`](https://github.com/christianmetz/docker-swaggerui) GitHub repository.
-
-## Licensing
-
-A Project by Christian Metz.
-Released under the [MIT License](LICENSE).
+**(à completer)**
