@@ -35,16 +35,52 @@ swagger-editor/
 ## Getting started
 
 
+
+
+## La Chart Swagger-editor CNAF
+
+Pour déployer Swagger editor dans Openshift via ArgoCD (ou Gitlab-CI à l'avenir), nous allons utilser une charte basée sur cette Image Docker :
+
+```sh
+FROM swaggerapi/swagger-editor:v4.13.1
+LABEL maintainer="CNAF CICD <adama.dieng@cnaf.fr>" \
+      image.source="https://github.com/swagger-api/swagger-editor"
+
+ENV PORT=8080 \
+    BASE_URL="/" \
+    PORT="8080" \
+    API_KEY="**None**" \
+    SWAGGER_JSON="/src/swagger/swagger.json" \
+    SWAGGER_FILE="/src/swagger/swagger.json" \
+    SWAGGER_JSON_URL="" \
+    CORS="true" \
+    EMBEDDING="false" \
+    PORT_IPV6=""
+
+WORKDIR /src/
+
+COPY . .
+
+EXPOSE 8080
+```
+
+Pour effectuer un test en Développement, il suffit de lancer cette commande :
+
+
 ```sh
 docker compose up --build [--force-recreate] -d
 
 ✔ Container swagger-editor                    Started
 ```
+ou
+
+```sh
+docker run -p 8080:8080 --name swagger-editor-dev -v $API_VOLUME_MOUNT:/src/swagger/swagger.json $(docker build -q .)
+```
 
 Résultat visible dans :
 
 ![Swagger IHM](./resources/img/swagger-ihm.png)
-
 
 
 

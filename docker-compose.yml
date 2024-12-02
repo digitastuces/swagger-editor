@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: swagger-editor
+    container_name: swagger-editor-dev
     restart: on-failure
     networks:
       - cnaf-bridge-network
