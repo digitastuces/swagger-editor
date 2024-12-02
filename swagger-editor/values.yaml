@@ -4,11 +4,10 @@
 
 replicaCount: 1
 image:
-  repository: nginx
+  repository: swaggerapi/swagger-editor # nginx
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
-
+  tag: "v4.13.1"
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
