@@ -5,7 +5,7 @@ LABEL maintainer="CNAF CICD <adama.dieng@cnaf.fr>" \
 ENV PORT=8080 \
     BASE_URL="/" \
     PORT="8080" \
-    API_KEY="**None**" \
+    # API_KEY="**None**" \
     SWAGGER_JSON="/src/swagger/swagger.json" \
     SWAGGER_FILE="/src/swagger/swagger.json" \
     SWAGGER_JSON_URL="" \
@@ -16,5 +16,7 @@ ENV PORT=8080 \
 WORKDIR /src/
 
 COPY . .
+
+COPY resources/api/swagger.json /src/swagger/swagger.json
 
 EXPOSE 8080
