@@ -35,6 +35,23 @@ swagger-editor/
 ## Getting started
 
 
+```sh
+docker compose up --build [--force-recreate] -d
+
+✔ Container swagger-editor                    Started
+```
+
+Résultat visible dans :
+
+![Swagger IHM](./resources/img/swagger-ihm.png)
+
+
+
+
+
+---
+
+
 
 [![Docker Build Status](https://img.shields.io/docker/build/metz/swaggerui.svg)](https://hub.docker.com/r/metz/swaggerui/)
 [![Docker Automated build](https://img.shields.io/docker/automated/metz/swaggerui.svg)](https://hub.docker.com/r/metz/swaggerui/)
